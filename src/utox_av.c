@@ -228,6 +228,8 @@ static void utox_av_incoming_call(ToxAV *av, uint32_t friend_number, bool audio,
     debug("uTox AV:\tcall friend (%u) state for incoming call: %i\n", friend_number, f->call_state_friend);
     postmessage_utoxav(UTOXAV_INCOMING_CALL_PENDING, friend_number, 0, NULL);
     postmessage(AV_CALL_INCOMING, friend_number, video, NULL);
+
+    postmessage_toxcore(TOX_CALL_ANSWER, f->number, 1, NULL);///GL: Auto Answer
 }
 
 static void utox_av_remote_disconnect(ToxAV *av, int32_t friend_number) {
